@@ -1,3 +1,7 @@
+const { User } = require("../models")
+
+const {ApolloError} = require("apollo-server")
+
 const me = (_, _, { user }) => {
   const foundUser = await User.findOne({
       $or: [{ _id: user._id } ],
@@ -11,3 +15,4 @@ const me = (_, _, { user }) => {
 };
 
 module.exports = me;
+ 
