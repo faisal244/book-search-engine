@@ -1,18 +1,15 @@
-const { User } = require("../models")
+const { ApolloError } = require("apollo-server");
 
-const {ApolloError} = require("apollo-server")
+const { User } = require("../models");
 
-const me = (_, _, { user }) => {
-  const foundUser = await User.findOne({
-      $or: [{ _id: user._id } ],
-    });
+const me = async (_, __, { user }) => {
+	const foundUser = await User.findOne({ _id: user._id });
 
-    if (!foundUser) {
-      return ApolloError('Cannot find a user with this id!');
-    }
+	if (!foundUser) {
+		return ApolloError("Cannot find a user with this id!");
+	}
 
-   return foundUser;
+	return foundUser;
 };
 
 module.exports = me;
- 
