@@ -8,7 +8,6 @@ const resolvers = {
 	Query: {
 		me,
 	},
-
 	Mutation: {
 		signup,
 		login,
